@@ -4,5 +4,7 @@
         "ostream": "cpp",
         "dense": "cpp"
     },
-    "files.encoding": "utf8"
+    "files.encoding": "utf8",
+    "leetcode.workspaceFolder": "D:\\01-Learning\\03-LeetCode\\LeetCode_Cpp",
+    "leetcode.defaultLanguage": "cpp"
 }
