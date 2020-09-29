@@ -94,7 +94,7 @@ public:
                     res.push_back(matrix[r][s - r]);
                 }
             }
-            d ^= 1;
+            d = 1;
         }
         return res;
     }
