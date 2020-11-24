@@ -2,7 +2,7 @@
  * @Author: PureDeep
  * @Date: 2020-11-20 11:19:23
  * @LastEditors: PureDeep
- * @LastEditTime: 2020-11-21 11:02:39
+ * @LastEditTime: 2020-11-23 11:12:27
  * @FilePath: \LeetCode\151.翻转字符串里的单词.cpp
  */
 /*
@@ -13,7 +13,7 @@
 
 #pragma GCC diagnostic error "-std=c++11"
 #include <iostream>
-#include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -23,41 +23,28 @@ class Solution
 public:
     string reverseWords(string s)
     {
-        int len = s.size();
-        int start = 0;
-        int space_flag = 1;
-        string result;
-        for (int i = 0; i < len; ++i)
+        stringstream ss;
+        string ans = "", tmp;
+        ss << s;
+        while (ss >> tmp)
         {
-            if (s[i] != ' ' && space_flag == 1)
-            {
-                start = i;
-                space_flag = 0;
-            }
-            else if (s[i] == ' ' && space_flag == 0)
-            {
-                int tmp_len = i - start;
-                result = ' ' + s.substr(start, tmp_len) + result;
-                space_flag = 1;
-            }
-            else if (i == len - 1 && space_flag == 0)
-            {
-                result = s.substr(start) + result;
-            }
+            ans = " " + tmp + ans;
         }
-        if (s[len - 1] == ' ')
+        cout << ans << endl;
+        if (ans != "")
         {
-            result = result.substr(1);
+            ans.erase(ans.begin());
         }
-        return result;
+        cout << ans << endl;
+        return ans;
     }
 };
 // @lc code=end
 
 int main(int argc, char *argv[])
 {
-    string que = " asdasd df f";
+    string s = " asdasd df f ";
     Solution ans;
-    cout << ans.reverseWords(que) << endl;
+    ans.reverseWords(s);
     return 0;
 }
