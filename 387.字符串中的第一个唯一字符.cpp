@@ -2,7 +2,7 @@
  * @Author: PureDeep
  * @Date: 2020-11-23 11:14:19
  * @LastEditors: PureDeep
- * @LastEditTime: 2020-11-23 13:38:15
+ * @LastEditTime: 2020-11-27 20:50:14
  * @FilePath: \LeetCode\387.字符串中的第一个唯一字符.cpp
  */
 /*
@@ -14,7 +14,7 @@
 #pragma GCC diagnostic error "-std=c++11"
 #include <iostream>
 #include <string>
-#include <map>
+#include <vector>
 
 using namespace std;
 
@@ -24,30 +24,25 @@ class Solution
 public:
     int firstUniqChar(string s)
     {
-        int size = s.size();
-        map<char, int> charNums;
-        for (int i = 0; i < size; i++)
+        vector<int> count(26, 0);
+        for (int i = 0; i < s.size(); ++i)
         {
-            charNums[s[i]] = 0;
+            count[s.at(i) - 'a']++;
         }
-        map<char, int>::iterator it;
-        for (it = charNums.begin(); it != charNums.end(); it++)
+
+        // for (int i = 0; i < s.size(); ++i)
+        // {
+        //     cout << s.at(i) << " " << count[s.at(i) - 'a'] << endl;
+        // }
+
+        for (int i = 0; i < s.size(); ++i)
         {
-            if (it->second == 0)
+            if (count[s.at(i) - 'a'] == 1)
             {
-                for (int i = 0; i < size; ++i)
-                {
-                    if (it->first == s[i])
-                    {
-                        return i;
-                    }
-                }
+                return i;
             }
         }
-        for (it = charNums.begin(); it != charNums.end(); it++)
-        {
-            cout << it->first << " " << it->second << endl;
-        }
+        return -1;
     }
 };
 // @lc code=end
@@ -56,6 +51,8 @@ int main(int argc, char *argv[])
 {
     Solution ans;
     string s = "leetcode";
+    cout << ans.firstUniqChar(s) << endl;
+    s = "loveleetcode";
     cout << ans.firstUniqChar(s) << endl;
     return 0;
 }
