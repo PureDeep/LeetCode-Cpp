@@ -2,7 +2,7 @@
  * @Author: PureDeep
  * @Date: 1970-01-01 08:00:00
  * @LastEditors: PureDeep
- * @LastEditTime: 2020-12-21 10:32:31
+ * @LastEditTime: 2020-12-21 17:03:01
  * @FilePath: /LeetCode/135.分发糖果.cpp
  */
 /*
@@ -12,6 +12,7 @@
  */
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 // @lc code=start
 class Solution
@@ -27,16 +28,16 @@ public:
         }
         for (int i = 0; i < size - 1; ++i)
         {
-            if (ratings[i] > ratings[i + 1])
+            if (ratings[i + 1] > ratings[i])
             {
-                candy[i]++;
+                candy[i + 1] = candy[i] + 1;
             }
         }
         for (int i = size - 1; i > 0; --i)
         {
-            if (ratings[i] > ratings[i - 1])
+            if (ratings[i - 1] > ratings[i])
             {
-                candy[i]++;
+                candy[i - 1] = max(candy[i - 1], candy[i] + 1);
             }
         }
         int sum = 0;
